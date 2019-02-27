@@ -1,0 +1,62 @@
+
+<div class="col-xs-3">
+<% if book.errors.any? %>
+      <h3> <%= book.errors.count %> error prohibited this obj from being saved:</h3>
+       <% book.errors.full_messages.each do |message| %>
+       <ul>
+         <li> <%= message %></li>
+       </ul>
+
+       <% end %>
+   <% end %>
+
+      <% if flash[:notice] %>
+     <div class="flash">
+       <%= flash[:notice] %>
+     </div>
+   <% end %>
+
+	<h2>user info </h2>
+
+	<div class="profile-container">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>
+						<%= attachment_image_tag user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback:"no_image.jpg"%>
+					</th>
+				</tr>
+				<tr>
+				   <th>name</th>
+				   <th><%= user.name %></th>
+				</tr>
+				<tr>
+					<th>introduction</th>
+					<th><%= user.introduction %></th>
+				</tr>
+			</thead>
+		</table>
+
+		<br>
+		<br>
+		<br>
+		<%= link_to '', edit_user_path(user), class: " edit_user_#{user.id} glyphicon glyphicon-wrench btn btn-default col-xs-12" %>
+
+		<h1>New book</h1>
+
+
+		<%= form_for(book) do |f| %>
+		<h4>タイトル</h4>
+		<%= f.text_field :title,class: 'col-xs-12 book_title'%>
+
+		<h4>opinion </h4>
+		<%= f.text_area :body,class: 'col-xs-12 book_body' %>
+
+		<%= f.submit 'create Book',class: 'btn btn-info col-xs-12' %>
+
+		<% end %>
+</div>
+
+
+
+</div>

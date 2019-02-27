@@ -1,4 +1,4 @@
-<h1>Books#new</h1>
+
 <h1>新規投稿</h1>
 <!-- form_for部分 -->
 <%= form_for(@book) do |f| %>
@@ -6,10 +6,17 @@
     <h4>タイトル</h4>
     <%= f.text_field :title %>
 
-    <h4>本文</h4>
-    <%= f.text_area :body %>
+    <h4>opinion </h4>
+    <%= f.text_area :body%>
 
     <%= f.submit '投稿' %>
-a
+
 <% end %>
+<% if @book_image.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @book.errors.count %>件のエラーが発生しました。</h2>
+      <ul>
+      <% @book_image.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
 <p>Find me in app/views/books/new.html.erb</p>

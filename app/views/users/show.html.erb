@@ -1,0 +1,34 @@
+
+
+
+<div class="container">
+  <div class="row">
+      <%= render'books/list',book:@bookn, user: @user %>
+
+    <div class="col-xs-9">
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>image</th>
+            <th>title</th>
+            <tH>opnion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @books.each do |book| %>
+          <tbody>
+
+          <tr>
+
+            <td><%= attachment_image_tag book.user, :profile_image, :fill, 100, 100, format: 'jpeg',fallback: "no_image.jpg" %></td>
+              <td><%= link_to book.title, "/books/#{book.id}",class: "book_#{book.id}" %></td>
+            <td><%= book.body %></td>
+
+            </td>
+          </tr>
+        <% end %>
+
+        </tbody>
+      </table>
+    </div>

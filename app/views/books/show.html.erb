@@ -1,7 +1,39 @@
-<h1>Books#show</h1>
-<p>Find me in app/views/books/show.html.erb</p>
-<h2>タイトル</h2>
-<p><%= @book.title %></p>
-<h2>本文</h2>
-<p><%= @book.opinion%></p>
-<%= link_to "編集", edit_book_path(@book.id) %> 
+
+<div class="container">
+	<div class="row">
+		<%= render'books/list',book:@book,user: @bookn.user %>
+		<div class="col-xs-9">
+			<h1>Books</h1>
+
+
+			<table class="table table-hover table-inverse">
+				<thead>
+					<tr>
+						<th></th>
+						<th>title</th>
+						<th>body</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<%= link_to user_path(@bookn.user.id), class: "user_#{@bookn.user.id}" do %>
+							<%= attachment_image_tag @bookn.user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg"%>
+
+							<br><br><br>
+							<%= @bookn.user.name  %>
+							<% end %>
+						</td>
+						<td><%= @bookn.title %></td>
+						<td><%= @bookn.body %></td>
+						<% if @bookn.user.id == current_user.id %>
+
+						<td><%= link_to '編集', edit_book_path(@bookn), class:  "btn btn-success edit_book#{@bookn}" %></td>
+						<td> <%= link_to "削除", book_path(@bookn.id), class: "destroy_book btn btn-danger destroy_book_#{@bookn.id}",method: :delete, "data-confirm" => "本当に削除しますか？" %></td>
+						<% end %>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

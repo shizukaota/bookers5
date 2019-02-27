@@ -1,10 +1,31 @@
-<h1>Books#edit</h1>
-<p>Find me in app/views/books/edit.html.erb</p>
-<h1>編集画面</h1>
-<%= form_for(@book) do |f| %>
-    <h4>タイトル</h4>
-    <%= f.text_field :title %>
-    <h4>本文</h4>
-    <%= f.text_area :opinion%>
-    <%= f.submit '保存' %>
+<% if @book.errors.any? %>
+  <div id="error_explanation" class="alert alert-danger">
+    <ul>
+      <% @book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
 <% end %>
+
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<table class="table table-striped">
+			<h1>Editing Book</h1>
+				<%= form_for(@book) do |f| %>
+				    <h4>title</h4>
+				    <%= f.text_field :title, class: "book_title" %>
+				    <h4>opinion</h4>
+				    <%= f.text_area :body, class: "book_body" %>
+				    <%= f.submit '保存' %>
+				    <br>
+
+				    <%= link_to"show", book_path(@book.id),class: "book_#{@book.id}" %>
+				    |
+                    <%= link_to"back", books_path(@book),class: "books back" %>
+
+				<% end %>
+		</table>
+    </div>
+</div>
+
