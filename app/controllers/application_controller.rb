@@ -26,8 +26,6 @@ class ApplicationController < ActionController::Base
   def set_current_user
   @current_user = User.find_by(id: [:user_id])
   end
-  
-  
 
 end
 
