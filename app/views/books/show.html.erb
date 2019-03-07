@@ -28,7 +28,7 @@
 						<td><%= @bookn.body %></td>
 						<% if @bookn.user.id == current_user.id %>
 
-						<td><%= link_to '編集', edit_book_path(@bookn), class:  "btn btn-success edit_book#{@bookn}" %></td>
+						<td><%= link_to '編集', edit_book_path(@bookn), class:  "btn btn-success edit_book_#{@bookn.id}" %></td>
 						<td> <%= link_to "削除", book_path(@bookn.id), class: "destroy_book btn btn-danger destroy_book_#{@bookn.id}",method: :delete, "data-confirm" => "本当に削除しますか？" %></td>
 						<% end %>
 					</tr>

@@ -39,15 +39,7 @@
                         <%= f.label :自己紹介 %>
                         <%= f.text_area :introduction, class: "introduction form-control"%>
                         <%= f.submit 'UpdateUser' %>
-                          <% if @user.errors.any? %>
-                        <div id="error_explanation" class="alert alert-danger">
-                        <ul>
-                              <% @user.errors.full_messages.each do |message| %>
-                        <li><%= message %></li>
-                       <% end %>
-    </ul>
-  </div>
-<% end %>
+
 
                       <% end %>
                     </div>

@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   before_action :authenticate_user!, except:[:top, :about]
+  before_action :correct_user, only: [:edit, :update]
   def top
       @books = Book.all
   end
@@ -19,10 +20,14 @@ class BooksController < ApplicationController
 
 	def edit
 		@book = Book.find(params[:id])
-    if
+     if
+      current_user != @book.user
+      redirect_to root_books_
+     end
+     if
      flash[:notice] = " successfully."
-	end
-   end
+     end
+  end
 
 
 	def create
@@ -63,13 +68,18 @@ class BooksController < ApplicationController
    end
   end
 
-
-  private
+private
 
   def book_params
     params.require(:book).permit(:title, :body, :user_id)
   end
 
+  def correct_user
+    @book =  Book.find(params[:id])
+    if current_user != @book.user
+       redirect_to books_path
+    end
+  end
 end
 
 
