@@ -1,5 +1,5 @@
 <div class="body-wrap">
-  <div id="st-container" class="st-container">
+ <div id="st-container" class="st-container">
     <div class="st-pusher">
       <div class="st-content">
         <div class="st-content-inner">
@@ -9,25 +9,27 @@
                 <div class="col-md-4 col-md-offset-4">
                   <div class="form-user style-1 rounded has-shadow-1">
                     <div class="form-header text-center">
-                      <h2 class="form-header-title">プロフィール編集</h2>
-                    </div>
-                    <div class="form-opinion">
-                      <table class="table table-striped">
                       <% if @user.errors.any? %>
                         <div id="error_explanation" class="alert alert-danger">
                           <ul>
                             <% @user.errors.full_messages.each do |message| %>
                               <li><%= message %></li>
                             <% end %>
+                            <% end %>
                           </ul>
                         </div>
-                      <% end %>
+                        <h2 class="form-header-title">プロフィール編集</h2>
+                     </div>
+                    <div class="form-opinion">
+                      <table class="table table-striped">
                       <%= form_for(@user) do |f| %>
-                      <div class="form-group has-icon">
+                        <div class="form-group has-icon">
                         <label class="control-label sr-only" for="inputEmail">Name</label>
                         <%= f.text_field :name, autofocus: true, class: "name form-control", id:"inputEmail", placeholder:"名前"%>
                         <span class="fa fa-user form-control-icon" aria-hidden="true"></span>
-                      </div>
+                        </div>
+                      </table>
+                    </div>
                       <div class="form-group has-icon">
                         <div class="user-edit-image">
                           <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg"%>
@@ -38,18 +40,15 @@
 
                         <%= f.label :自己紹介 %>
                         <%= f.text_area :introduction, class: "introduction form-control"%>
-                        <%= f.submit 'UpdateUser' %>
-
-
-                      <% end %>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+                       <%= f.submit 'UpdateUser' %>
+                             <% end %>
+          </div>
+         </div>
         </div>
-      </div>
+       </div>
+      </section>
+     </div>
     </div>
-  </div>
+   </div>
+ </div>
 </div>

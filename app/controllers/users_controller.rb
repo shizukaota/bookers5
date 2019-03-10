@@ -19,12 +19,16 @@ before_action :authenticate_user!
 			redirect_to user_path(@user.id)
 		else
 			render :edit
-
 		end
 	end
 
-	def edit
-		@user = User.find(params[:id])
+    def edit
+	    @user = User.find(params[:id])
+	    flash[:notice] = " successfully."
+       if
+        current_user  != @user
+        redirect_to users_path
+        end
 	end
 
 private
@@ -33,9 +37,7 @@ private
 		params.require(:user).permit(:name, :profile_image, :introduction)
 	end
 
-
 end
-
 
 
 
