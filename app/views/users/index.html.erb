@@ -20,7 +20,7 @@
               <td><%=user.name%></td>
 
             <td>
-              <%= link_to user_path(user),class: "users" do  %>
+              <%= link_to user_path(user),class: "user_#{user.id}" do  %>
                 show
 	             <% end %>
 	          </td>
